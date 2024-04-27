@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'me.shinsunyoung'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+// implementation 컴파일, 런타임 모두
+// runtimeOnly 런타임에만 필요, 애플리케이션이 실행할때 필요
+// testImplementation 테스트 코드를 컴파일, 실행할때
+// compileOnly 컴파일만, 런타임x
+// annotationProcessor 컴파일시에 어노테이션을 처리할때
+dependencies {
+    implementation('io.jsonwebtoken:jjwt:0.9.1') // 자바 JWT 라이브러리
+    implementation('javax.xml.bind:jaxb-api:2.3.1') // XML 문서와 Java 객체 간 매핑 자동화
+    implementation('org.thymeleaf.extras:thymeleaf-extras-springsecurity6')
+    implementation('org.springframework.boot:spring-boot-starter-security')
+    implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    runtimeOnly('com.h2database:h2') // 인메모리 데이터베스 H2, 로컬, 테스트환경에서 사용하기 위해
+
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
+
+    testImplementation('org.projectlombok:lombok')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.springframework.security:spring-security-test')
+}
+
+test {
+    useJUnitPlatform()
+}

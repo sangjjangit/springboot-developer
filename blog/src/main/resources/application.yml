@@ -1,0 +1,30 @@
+spring:
+  jpa:
+    # 전송 쿼리 확인
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    # 테이블 생성 후에 data.sql 실행
+    defer-datasource-initialization: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+
+  h2:
+    console:
+      enabled: true
+
+jwt:
+  issuer: blog.com
+  secret_key: blog-springboot
+
+#  jwt.clock-skew-sec=300
+#  jwt.expiration-sec=86400
+#  jwt.issuer=ai.lgstation.com
+#  jwt.secret=ai-service-portal-secret
+#  aicc.crypto.jwt.keyphrase=baDvAxVxYHwHS6Dw
+#  #jwt keystore
+#  jwt.key-store=jwt-key.p12
+#  jwt.key-store-alias=jwtaeskey
+#  jwt.key-store-password=!aisp00
