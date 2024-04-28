@@ -17,10 +17,10 @@ repositories {
 // compileOnly 컴파일만, 런타임x
 // annotationProcessor 컴파일시에 어노테이션을 처리할때
 dependencies {
-//    implementation('io.jsonwebtoken:jjwt:0.9.1') // 자바 JWT 라이브러리
-//    implementation('javax.xml.bind:jaxb-api:2.3.1') // XML 문서와 Java 객체 간 매핑 자동화
+    implementation('io.jsonwebtoken:jjwt:0.9.1') // 자바 JWT 라이브러리
+    implementation('javax.xml.bind:jaxb-api:2.3.1') // XML 문서와 Java 객체 간 매핑 자동화
 //    implementation('org.thymeleaf.extras:thymeleaf-extras-springsecurity6')
-//    implementation('org.springframework.boot:spring-boot-starter-security')
+    implementation('org.springframework.boot:spring-boot-starter-security')
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -32,7 +32,7 @@ dependencies {
 
     testImplementation('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
-//    testImplementation('org.springframework.security:spring-security-test')
+    testImplementation('org.springframework.security:spring-security-test')
 }
 
 test {

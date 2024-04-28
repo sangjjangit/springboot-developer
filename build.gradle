@@ -11,8 +11,8 @@ allprojects {
     repositories {
         mavenCentral()
     }
-
 }
+
 subprojects {
     group = 'me.woo'
     version = '1.0-SNAPSHOT'
@@ -20,8 +20,6 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
     apply plugin: 'io.spring.dependency-management'
-
-
 
 // implementation 컴파일, 런타임 모두
 // runtimeOnly 런타임에만 필요, 애플리케이션이 실행할때 필요
@@ -38,39 +36,67 @@ subprojects {
 //    annotationProcessor('org.projectlombok:lombok')
 //    implementation('org.springframework.boot:spring-boot-starter-web')
 //    testImplementation('org.springframework.boot:spring-boot-starter-test')
+        testImplementation('org.projectlombok:lombok')
 
     }
-
 }
 
 dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    implementation project(':base-study')
     implementation project(':blog')
+    implementation project(':user')
 }
 springBoot {
-    mainClass = 'me.woo.SpringBootBlogApplication'
+//    mainClass = 'me.woo.SpringBootBlogApplication'
+    mainClass = 'me.woo.SpringBootMainApplication'
 }
-project(':blog') {
-    bootJar {
-        archiveBaseName = 'ROOT'
-        manifest.attributes 'Class-Path': 'config/'
+bootJar {
+    archiveBaseName = 'ROOT'
+    manifest.attributes 'Class-Path': 'config/'
+    println('11:'+project)
+    println('22:'+project.sourceSets.main.resources)
 
-        allprojects.each { project ->
-            println('33:'+project)
-            copy {
-                from project.sourceSets.main.resources
-                include 'application.yml'
-                into 'build/libs/config'
-            }
-        }
-    }
-    bootWar {
-        archiveBaseName = 'ROOT'
+    copy {
+        from project.sourceSets.main.resources
+        include 'application.yml', 'mappers/*'
+        into 'build/libs/config'
     }
 
-    dependencies {
-
-        implementation project(':base-study')
-//        implementation project(':blog')
-    }
-
+//    allprojects.each { project ->
+//        println('33:'+project)
+//        copy {
+//            from project.sourceSets.main.resources
+//            include 'application.yml'
+//            into 'build/libs/config'
+//        }
+//    }
 }
+bootWar {
+    archiveBaseName = 'ROOT'
+}
+//project(':blog') {
+//    bootJar {
+//        archiveBaseName = 'ROOT'
+//        manifest.attributes 'Class-Path': 'config/'
+//
+//        allprojects.each { project ->
+//            println('33:'+project)
+//            copy {
+//                from project.sourceSets.main.resources
+//                include 'application.yml'
+//                into 'build/libs/config'
+//            }
+//        }
+//    }
+//    bootWar {
+//        archiveBaseName = 'ROOT'
+//    }
+
+//    dependencies {
+//
+//        implementation project(':base-study')
+//    }
+//}

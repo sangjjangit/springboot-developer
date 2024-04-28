@@ -1,4 +1,5 @@
 rootProject.name = 'springboot-developer'
 include 'base-study'
 include 'blog'
+include 'user'
 

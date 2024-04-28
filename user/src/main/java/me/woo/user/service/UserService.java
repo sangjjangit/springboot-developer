@@ -1,8 +1,8 @@
 package me.woo.user.service;
 
 import lombok.RequiredArgsConstructor;
-import me.woo.user.dto.AddUserRequest;
 import me.woo.user.domain.User;
+import me.woo.user.dto.AddUserRequest;
 import me.woo.user.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
