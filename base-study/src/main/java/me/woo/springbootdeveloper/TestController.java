@@ -17,4 +17,8 @@ public class TestController {
         List<Member> members = testService.getAllMenbers();
         return members;
     }
+    @GetMapping("/test2")
+    public String test2() {
+        return "It's Alive!";
+    }
 }
