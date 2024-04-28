@@ -1,6 +1,6 @@
 logging:
   level:
-    root: debug
+    root: info
 spring:
   main:
     allow-bean-definition-overriding: true

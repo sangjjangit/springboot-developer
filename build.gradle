@@ -2,7 +2,10 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.4'
     id 'io.spring.dependency-management' version '1.1.0'
+    id 'war'
 }
+
+apply plugin: 'war'
 
 allprojects {
     repositories {
@@ -26,6 +29,9 @@ subprojects {
 // compileOnly 컴파일만, 런타임x
 // annotationProcessor 컴파일시에 어노테이션을 처리할때
     dependencies {
+        compileOnly('org.projectlombok:lombok')
+        annotationProcessor('org.projectlombok:lombok')
+        testAnnotationProcessor('org.projectlombok:lombok')
 //    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
 //    runtimeOnly('com.h2database:h2') // 인메모리 데이터베스 H2, 로컬, 테스트환경에서 사용하기 위해
 //    compileOnly('org.projectlombok:lombok')
@@ -52,10 +58,13 @@ project(':blog') {
             println('33:'+project)
             copy {
                 from project.sourceSets.main.resources
-                include 'application.yml', 'data.sql', 'templates/*', 'static/*/*'
+                include 'application.yml'
                 into 'build/libs/config'
             }
         }
+    }
+    bootWar {
+        archiveBaseName = 'ROOT'
     }
 
     dependencies {
